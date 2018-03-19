@@ -48,7 +48,7 @@ module Fastlane
                                       end),
           FastlaneCore::ConfigItem.new(key: :proguard_paths,
                                       env_name: "SENTRY_PROGUARD_PATHS",
-                                      description: "Path to an array of your symbols file.",
+                                      description: "Path to an array of your symbols file",
                                       is_string: false,
                                       optional: true),
           FastlaneCore::ConfigItem.new(key: :android_manifest,
