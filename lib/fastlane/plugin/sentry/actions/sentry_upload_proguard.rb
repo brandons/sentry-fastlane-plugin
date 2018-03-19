@@ -7,6 +7,7 @@ module Fastlane
 
         # Params - proguard
         proguard_path = params[:proguard_path]
+        proguard_paths = params[:proguard_paths] || []
 
         # Verify files
         proguard_paths += [proguard_path] unless proguard_path.nil?
@@ -33,7 +34,7 @@ module Fastlane
       end
 
       def self.details
-        "This action allows you to upload symbolication files to Sentry"
+        "This action allows you to uploaini symbolication files to Sentry"
       end
 
       def self.available_options
