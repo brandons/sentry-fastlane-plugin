@@ -33,16 +33,14 @@ module Fastlane
       end
 
       def self.details
-        [
-          "This action allows you to upload symbolication files to Sentry."
-        ].join(" ")
+        "This action allows you to upload symbolication files to Sentry"
       end
 
       def self.available_options
         Helper::SentryConfig.common_api_config_items + [
           FastlaneCore::ConfigItem.new(key: :proguard_path,
                                       env_name: "SENTRY_PROGUARD_PATH",
-                                      description: "Path to your symbols file.",
+                                      description: "Path to your symbols file",
                                       optional: false,
                                       verify_block: proc do |value|
                                         UI.user_error! "Could not find Path to your symbols file at path '#{value}'" unless File.exist?(value)
