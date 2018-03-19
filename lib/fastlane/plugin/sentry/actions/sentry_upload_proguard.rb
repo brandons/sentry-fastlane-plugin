@@ -46,17 +46,9 @@ module Fastlane
                                       verify_block: proc do |value|
                                         UI.user_error! "Could not find Path to your symbols file at path '#{value}'" unless File.exist?(value)
                                       end),
-          FastlaneCore::ConfigItem.new(key: :proguard_path,
-                                      env_name: "SENTRY_PROGUARD_PATHS",
-                                      description: "Path to an array your symbols file",
-                                      optional: false,
-                                      verify_block: proc do |value|
-                                        UI.user_error! "Could not find Path to your symbols file at path '#{value}'" unless File.exist?(value)
-                                      end),
           FastlaneCore::ConfigItem.new(key: :proguard_paths,
                                       env_name: "SENTRY_PROGUARD_PATHS",
                                       description: "Path to an array of your symbols file.",
-                                      default_value: Actions.lane_context[SharedValues::PROGUARD_PATHS],
                                       is_string: false,
                                       optional: true),
           FastlaneCore::ConfigItem.new(key: :android_manifest,
