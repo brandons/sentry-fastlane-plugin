@@ -7,7 +7,6 @@ module Fastlane
 
         # Params - proguard
         proguard_path = params[:proguard_path]
-        proguard_paths = params[:proguard_paths] || []
 
         # Verify files
         proguard_paths += [proguard_path] unless proguard_path.nil?
@@ -30,7 +29,7 @@ module Fastlane
       #####################################################
 
       def self.description
-        "Upload dSYM symbolication files to Sentry"
+        "Upload proguard symbolication files to Sentry"
       end
 
       def self.details
@@ -42,23 +41,16 @@ module Fastlane
       def self.available_options
         Helper::SentryConfig.common_api_config_items + [
           FastlaneCore::ConfigItem.new(key: :proguard_path,
-                                      env_name: "SENTRY_proguard_path",
+                                      env_name: "SENTRY_PROGUARD_PATH",
                                       description: "Path to your symbols file.",
-                                      default_value: Actions.lane_context[SharedValues::PROGUARD_OUTPUT_PATH],
-                                      optional: true,
+                                      optional: false,
                                       verify_block: proc do |value|
                                         UI.user_error! "Could not find Path to your symbols file at path '#{value}'" unless File.exist?(value)
                                       end),
-          FastlaneCore::ConfigItem.new(key: :proguard_paths,
-                                       env_name: "SENTRY_proguard_paths",
-                                       description: "Path to an array of your symbols file. For iOS and Mac provide path to app.dSYM.zip",
-                                       default_value: Actions.lane_context[SharedValues::proguard_pathS],
-                                       is_string: false,
-                                       optional: true),
           FastlaneCore::ConfigItem.new(key: :android_manifest,
-                                      env_name: "SENTRY_android_manifest",
+                                      env_name: "SENTRY_ANDROID_MANIFEST",
                                       description: "Path to Android manifest to add version information when uploading debug symbols",
-                                      optional: true,
+                                      optional: false,
                                       verify_block: proc do |value|
                                         UI.user_error! "Could not find manifest at path '#{value}'" unless File.exist?(value)
                                       end)
